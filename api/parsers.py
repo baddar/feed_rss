@@ -6,9 +6,8 @@ def get_feed_data(urls):
     sorted_data = []
     for url in urls:
         data = feedparser.parse(f'{url}')
-        items.append(data.entries)
-    for i in range(len(items)):
-        sorted_data.append(sorted(items[i], key=lambda item: item.published)[:20])
-    print(sorted_data)
+        for i in range(len(data.entries)):
+            if data.entries[i].title not in items:
+                items.append(data.entries[i])
+            sorted_data = sorted(items, key=lambda item: item["published"])[:10]
     return sorted_data
-
