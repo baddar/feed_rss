@@ -14,3 +14,12 @@ class FeedDataViewSet(viewsets.ModelViewSet):
         url = Feed.objects.get(pk=pk)
         feed_data = get_feed_data(url)
         return Response(feed_data)
+    
+
+    def list(self, request):
+        urls = self.queryset
+        feed_data = get_feed_data(urls)
+
+        return Response(feed_data)
+
+    
